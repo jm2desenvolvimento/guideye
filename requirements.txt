@@ -1,0 +1,14 @@
+opencv-python==4.9.0.80
+cvlib==0.2.7
+speechrecognition
+pyttsx3
+openai
+mediapipe
+wikipedia
+tensorflow
+PyAudio
+openai==0.28
+pyvona
+gtts
+ffmpeg
+aplay

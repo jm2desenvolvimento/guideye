@@ -1,0 +1,10 @@
+[Unit]
+Description=Boot Linux Guideye
+
+[Service]
+Type=simple
+ExecStart=/home/tutvision/Desktop/APLICATIVO/guideye.sh
+User=tutvision
+
+[Install]
+WantedBy=multi-user.target
