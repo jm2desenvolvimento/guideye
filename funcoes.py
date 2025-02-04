@@ -172,10 +172,48 @@ def opcao_cenario():
     
 
     convertVoz(objetos_detectados)
+
+def opcao_leia():
+    # Detecta o sistema operacional
+    sistema = os.name
+
+    # Captura a imagem de acordo com o sistema operacional
+    if sistema == 'posix':  # Linux/Ubuntu
+        os.system("libcamera-still -t 500 -o leia.jpg")
+        caminho_imagem = '/home/tutvision/Desktop/APLICATIVO/leia.jpg'
+    else: 
+        print(sistema)
+        cap = cv2.VideoCapture(0)
+        ret, frame = cap.read()
+        if ret:
+            cv2.imwrite('leia.jpg', frame)
+            cap.release()
+        caminho_imagem = 'leia.jpg'
+
+    # Usar o modelo Gemini inicializado
+    model = inicializar_gemini()
+    
+    # Carregar a imagem usando PIL
+    imagem = Image.open(caminho_imagem)
+    
+    # Fazer a pergunta ao Gemini
+    prompt = """
+    retorne o texto da imagem 
+    
+    """
+    
+    response = model.generate_content([prompt, imagem])
+    objetos_detectados = response.text
+    
+
+    
+
+    convertVoz(objetos_detectados)
     
 
 
 def opcao_interacao(msg):
+    print("opcao_interacao")
     # Detecta o sistema operacional
     sistema = os.name
     

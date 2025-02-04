@@ -10,7 +10,7 @@ import wikipedia
 import os
 import numpy as np
 from traducao import traducao_etiquetas
-from funcoes import convertVoz, gerar_resposta, reconhecerVoz, buscarChatgpt, opcao_assistente, opcao_cenario, opcao_interacao
+from funcoes import convertVoz, gerar_resposta, reconhecerVoz, buscarChatgpt, opcao_assistente, opcao_cenario, opcao_interacao,opcao_leia
 from webserver import capturarImagem
 from FaceRecognition.model import prediction, extractor
 
@@ -56,15 +56,17 @@ while True:
 
             case command if 'leia' in command:
                 convertVoz("Iniciando leitura.")
-                ocr_processor = extractor.OCRProcessor(language='pt')
-                text = ocr_processor.process()
-                convertVoz(text)
+                #ocr_processor = extractor.OCRProcessor(language='pt')
+                #text = ocr_processor.process()
+                opcao_leia()
+                
 
             case command if "assistente" in command:
                 texto = command.replace('assistente', '', 1)
                 opcao_assistente("Responda a seguinte questão no máximo em 2 linhas: " + texto)
 
             case command if "cenário" in command:
+                convertVoz("Iniciando opção cenario")
                 opcao_cenario()
 
             case command if "detalhar" in command:
